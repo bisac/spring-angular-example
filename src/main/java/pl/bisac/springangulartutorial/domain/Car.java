@@ -3,6 +3,7 @@ package pl.bisac.springangulartutorial.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -21,4 +22,7 @@ public class Car {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name =  "customerId")
   private Customer customer;
+
+  @OneToMany(mappedBy = "car", fetch = FetchType.LAZY)
+  private List<Reparation> reparations;
 }
