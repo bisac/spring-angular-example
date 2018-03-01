@@ -3,6 +3,7 @@ package pl.bisac.springangulartutorial.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,4 +23,6 @@ public class Customer {
   private String city;
   private String zipCode;
   private String taxNumber;
+  @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+  private List<Car> cars;
 }
