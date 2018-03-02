@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="piotr-rak" id="03-create-reparation-01">
+        <createTable tableName="reparation">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="car_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_reparation_car" referencedColumnNames="id" referencedTableName="car"/>
+            </column>
+            <column name="start_date" type="datetime" />
+            <column name="duration" type="int" />
+            <column name="description" type="clob" />
+            <column name="state" type="varchar(20)" />
+        </createTable>
+    </changeSet>
+
+    <changeSet author="piotr-rak" id="03-create-reparation-02">
+        <createSequence sequenceName="seq_id_reparation" startValue="1"/>
+    </changeSet>
+
+</databaseChangeLog>
