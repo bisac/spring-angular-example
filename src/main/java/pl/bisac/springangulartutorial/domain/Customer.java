@@ -1,5 +1,6 @@
 package pl.bisac.springangulartutorial.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,5 +25,6 @@ public class Customer {
   private String zipCode;
   private String taxNumber;
   @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+  @JsonIgnore
   private List<Car> cars;
 }
