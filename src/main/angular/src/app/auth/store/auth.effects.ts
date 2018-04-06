@@ -16,7 +16,9 @@ export class AuthEffects {
       const token = btoa(action.payload.username + ':' + action.payload.password);
       const headers = new HttpHeaders({ Authorization: 'Basic ' + token });
       return this.http.get('http://localhost:8080/user', { headers: headers }).pipe(
-         map( response => ({type: AuthActions.SET_TOKEN, payload: token } ) ),
+         map( response => {
+           return {type: AuthActions.SET_TOKEN, payload: token };
+          } ),
          catchError(error => of ({type: AuthActions.SET_ERROR}) )
       );
     })

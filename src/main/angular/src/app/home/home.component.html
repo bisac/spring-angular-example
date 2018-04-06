@@ -8,30 +8,32 @@
   <div class="collapse navbar-collapse" id="navbarColor03">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a routerLinkActive='active' class="nav-link" routerLink='/client' >Clients </a>
+        <a routerLinkActive='active' class="nav-link" routerLink='/customer' >Clients </a>
       </li>
       <li class="nav-item">
-        <a routerLinkActive='active' class="nav-link" routerLink='/repair'>Repairs</a>
+        <a routerLinkActive='active' class="nav-link" routerLink='/reparation'>Repairs</a>
       </li>
       <li class="nav-item">
+        <a routerLinkActive='active' class="nav-link" routerLink='/car'>Car</a>
+      </li>
+      <!--<li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">About</a>
-      </li>
+      </li>-->
     </ul>
 
-    <span class="navbar-inline ">
+    <span class="navbar-inline cursor-pointer">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item ">
               <a class="nav-link" (click)='logout()'>Logout</a>
             </li>
         </ul>
     </span>
-
   </div>
 </nav>
 
 <div id="wrapper" class="container-fluid ">
-   <!-- <router-outlet></router-outlet> -->
+   <router-outlet></router-outlet>
 </div>

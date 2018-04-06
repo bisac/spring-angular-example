@@ -1,30 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import * as storeApp from '../../store/app.reducers';
 import * as actionAuth from '../store/auth.action';
 import * as storeAuth from './../store/auth.reducers';
-import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+
 
   credentials = {username: '', password: ''};
-  authState: Observable<storeAuth.AuthState>;
+  authSub: Subscription;
+  error: boolean;
 
-  constructor(private http: HttpClient, private router: Router,
-      private store: Store<storeApp.AppState> ) {
+  constructor(private router: Router,
+      private store: Store<storeApp.AppState>, private route: ActivatedRoute ) {
   }
 
   ngOnInit(): void {
-    this.authState = this.store.select('auth');
+    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+    this.authSub = this.store.select('auth').subscribe( data => {
+      this.error = data.error;
+      if (data.authentitaced) {
+        this.router.navigate([returnUrl]);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.authSub.unsubscribe();
   }
 
   login() {

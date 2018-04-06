@@ -1,8 +1,9 @@
 <div class="container-fluid">
-  <div *ngIf=" (authState | async).authentitaced; else login;">
+    <router-outlet></router-outlet>
+  <!--<div *ngIf=" (authState | async).authentitaced; else login;">
     <app-home></app-home>
   </div>
   <ng-template #login>
     <app-login></app-login>
-  </ng-template>
+  </ng-template>-->
 </div>
