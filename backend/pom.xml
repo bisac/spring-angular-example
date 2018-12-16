@@ -142,10 +142,10 @@
 
         <resources>
             <resource>
-                <directory>./src/main/resources</directory>
+                <directory>src/main/resources</directory>
             </resource>
             <resource>
-                <directory>./src/main/angular/dist</directory>
+                <directory>src/main/angular/dist</directory>
                 <targetPath>static</targetPath>
             </resource>
         </resources>
