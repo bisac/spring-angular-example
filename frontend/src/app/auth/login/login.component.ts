@@ -4,8 +4,7 @@ import { Store } from '@ngrx/store';
 
 import * as storeApp from '../../store/app.reducers';
 import * as actionAuth from '../store/auth.action';
-import * as storeAuth from './../store/auth.reducers';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',

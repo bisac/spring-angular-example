@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import * as AuthActions from './auth.action';
 
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
 @Injectable()

@@ -1,11 +1,11 @@
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpHeaders } from '@angular/common/http';
-import { Injectable, OnInit, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as storeApp from '../store/app.reducers';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/take';
+import { take, switchMap } from 'rxjs/operators';
+
+
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -13,9 +13,9 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private store: Store<storeApp.AppState>) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    return this.store.select('auth')
-    .take(1)
-    .switchMap(authStore => {
+    return this.store.select('auth').pipe(
+    take(1),
+    switchMap(authStore => {
 
       if (authStore.authentitaced) {
         const reqestClone = req.clone({ headers: new HttpHeaders()
@@ -24,5 +24,5 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(reqestClone);
       }
       return next.handle(req);
-    });
+    }));
   }}
